@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration
 import com.demoqa.pages.TextBoxPage
 import org.testng.annotations.BeforeClass
 import org.testng.annotations.Test
+import com.demoqa.models.User
 
 class TextBoxTest {
 
@@ -16,9 +17,12 @@ class TextBoxTest {
 
     @Test
     void testFillTextBoxForm() {
+        def user = new User("Boris", "boris@example.com", "123 Main St", "456 Other St")
+
         def page = new TextBoxPage()
         page.open()
-        page.fillForm("Boris", "boris@example.com", "123 Main St", "456 Other St")
+        page.fillForm(user.name, user.email, user.currentAddress, user.permanentAddress)
+
         assert page.getOutputName() == "Boris"
     }
 }
