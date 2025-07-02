@@ -2,9 +2,9 @@ name: Run Groovy Selenide Tests
 
 on:
   push:
-    branches: [ fetch-remote-pages ]
+    branches: [ master ]
   pull_request:
-    branches: [ fetch-remote-pages ]
+    branches: [ master ]
 
 jobs:
   test:
