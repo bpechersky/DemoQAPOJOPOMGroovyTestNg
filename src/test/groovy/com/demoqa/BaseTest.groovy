@@ -1,27 +1,30 @@
 package com.demoqa
 
-import org.openqa.selenium.WebDriver
-import org.openqa.selenium.chrome.ChromeDriver
-import org.openqa.selenium.chrome.ChromeOptions
-import org.testng.annotations.AfterMethod
-import org.testng.annotations.BeforeMethod
+import com.codeborne.selenide.Configuration
 import io.github.bonigarcia.wdm.WebDriverManager
+import org.openqa.selenium.chrome.ChromeOptions
+import org.testng.annotations.BeforeClass
 
 class BaseTest {
-    WebDriver driver
 
-    @BeforeMethod
+    @BeforeClass
     void setup() {
         WebDriverManager.chromedriver().setup()
-        ChromeOptions options = new ChromeOptions()
-        options.addArguments("--start-maximized")
-        driver = new ChromeDriver(options)
-    }
 
-    @AfterMethod
-    void teardown() {
-        if (driver != null) {
-            driver.quit()
-        }
+        Configuration.browser = "chrome"
+        Configuration.browserSize = "1920x1080"
+        Configuration.headless = true
+
+        ChromeOptions options = new ChromeOptions()
+        options.addArguments(
+                "--headless=new",              // proper headless mode
+                "--window-size=1920,1080",
+                "--disable-gpu",
+                "--no-sandbox",
+                "--disable-dev-shm-usage"
+        )
+
+        Configuration.browserCapabilities = options
     }
 }
+

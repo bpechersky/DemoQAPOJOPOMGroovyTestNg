@@ -1,19 +1,16 @@
 package com.demoqa.tests
 
 import com.codeborne.selenide.Configuration
+import com.demoqa.BaseTest
 import com.demoqa.pages.TextBoxPage
+import io.github.bonigarcia.wdm.WebDriverManager
 import org.testng.annotations.BeforeClass
 import org.testng.annotations.Test
 import com.demoqa.models.User
 
-class TextBoxTest {
+class TextBoxTest extends  BaseTest{
 
-    @BeforeClass
-    static void setup() {
-        Configuration.browser = "chrome"
-        Configuration.browserSize = "1920x1080"
-        Configuration.headless = true
-    }
+
 
     @Test
     void testFillTextBoxForm() {
