@@ -15,6 +15,7 @@ class BaseTest {
         Configuration.browserSize = "1920x1080"
         Configuration.headless = true
 
+
         ChromeOptions options = new ChromeOptions()
         options.addArguments(
                 "--headless=new",              // proper headless mode
