@@ -13,7 +13,6 @@ class ButtonsPage {
     SelenideElement rightClickBtn = $("#rightClickBtn")
     SelenideElement dynamicClickBtn = $x("//button[text()='Click Me']")
 
-
     SelenideElement doubleClickMessage = $("#doubleClickMessage")
     SelenideElement rightClickMessage = $("#rightClickMessage")
     SelenideElement dynamicClickMessage = $("#dynamicClickMessage")
