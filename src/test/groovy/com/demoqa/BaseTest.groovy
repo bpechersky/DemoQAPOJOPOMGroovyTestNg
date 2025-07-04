@@ -1,31 +1,26 @@
 package com.demoqa
 
 import com.codeborne.selenide.Configuration
-import io.github.bonigarcia.wdm.WebDriverManager
-import org.openqa.selenium.chrome.ChromeOptions
-import org.testng.annotations.BeforeClass
+import org.testng.annotations.BeforeMethod
 
 class BaseTest {
 
-    @BeforeClass
-    void setup() {
-        WebDriverManager.chromedriver().setup()
-
+    @BeforeMethod
+    void setUp() {
         Configuration.browser = "chrome"
-        Configuration.browserSize = "1920x1080"
-        Configuration.headless = true
+        Configuration.headless = true // or true if you want
+        Configuration.timeout = 10000
+        Configuration.browserSize = "1920x1080" // ← updated from removed startMaximized
 
-
-        ChromeOptions options = new ChromeOptions()
-        options.addArguments(
-                "--headless=new",              // proper headless mode
-                "--window-size=1920,1080",
-                "--disable-gpu",
-                "--no-sandbox",
-                "--disable-dev-shm-usage"
-        )
-
-        Configuration.browserCapabilities = options
+        Configuration.browserCapabilities.setCapability("goog:chromeOptions", [
+                args: [
+                        "--disable-gpu",
+                        "--no-sandbox",
+                        "--disable-dev-shm-usage",
+                        "--disable-extensions",
+                        "--remote-allow-origins=*"
+                        // "--headless=new" // only if headless mode
+                ]
+        ])
     }
 }
-
